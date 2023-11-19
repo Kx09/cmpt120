@@ -19,22 +19,26 @@ import cv2
 The function below extracts the red component of an image and returns it as a two dimensional list
 '''
 def getRedComponent(img):
+ 
  if len(img[0][0]) != 3:
- print("Attempting to return the red component from a non RGB image")
- print("Returning an empty matrix")
- return []
+    print("Attempting to return the red component from a non RGB image")
+    print("Returning an empty matrix")
+    return []
  else:
- imageHeight = len(img)
- imageWidth = len(img[0])
- R = [] #Red component matrix
- for i in range(imageHeight):
+    imageHeight = len(img)
+    imageWidth = len(img[0])
+    R = [] #Red component matrix
 
-row = []
- for j in range (imageWidth):
- pixel = img[i][j]
- row.append(pixel[0])
- R.append(row)
- return R
+    for i in range(imageHeight):
+        row = []
+        for j in range (imageWidth):
+          pixel = img[i][j]
+          row.append(pixel[0])
+          R.append(row)
+          return R
+          
+          
+        
 
 '''
 The function below extracts the green component of an image and returns it as a two dimensional list
@@ -54,6 +58,9 @@ def invertMatrixLeftRight(M):
 '''
 The function below updates an image with given red, blue, and green two dimensional lists
 '''
+
+
+
 def updateImage(img, R, G, B):
  for i in range(len(img)):
  for j in range(len(img[0])):
@@ -62,14 +69,19 @@ def updateImage(img, R, G, B):
 '''
 The function below inverts an image left right
 '''
+
+
 def invertImageLeftRight(myImage):
- R = getRedComponent(myImage)
- G = getGreenComponent(myImage)
- B = getBlueComponent(myImage)
- invertMatrixLeftRight(R)
- invertMatrixLeftRight(G)
- invertMatrixLeftRight(B)
- updateImage(myImage, R, G, B)
+  R = getRedComponent(myImage)
+  G = getGreenComponent(myImage)
+  B = getBlueComponent(myImage)
+  invertMatrixLeftRight(R)
+  invertMatrixLeftRight(G)
+  invertMatrixLeftRight(B)
+  updateImage(myImage, R, G, B)
+
+
+
 #Main Program
 #Please note that you are NOT allowed to modify or change any part of the given main program.
 #You must use the given main program as it is given to you without any modification.
@@ -87,4 +99,3 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 #Save the inverted image in the computer hard drive
 cv2.imwrite("Lenna_INVERTED.png", myImage)
-    
